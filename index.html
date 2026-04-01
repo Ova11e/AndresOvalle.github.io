@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrés Ovalle · Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#111210;
+  --ink2:#3d3f3a;
+  --ink3:#7a7c76;
+  --bg:#f4f2ed;
+  --card:#ffffff;
+  --rule:#dddbd4;
+  --accent:#1c3d2e;
+  --gold:#b5873a;
+  --gold-light:#f0e4cc;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{from{width:0}to{width:100%}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.fade-up{animation:fadeUp .7s ease both}
+.fade-up-2{animation:fadeUp .7s .15s ease both}
+.fade-up-3{animation:fadeUp .7s .28s ease both}
+.fade-up-4{animation:fadeUp .7s .42s ease both}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2.5rem;
+  background:rgba(244,242,237,0.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--accent);letter-spacing:-0.01em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--ink3);font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff;padding:8px 20px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:#0f2219}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 420px;
+  padding-top:68px;
+  overflow:hidden;
+}
+.hero-left{
+  padding:5rem 3.5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--rule);
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;color:var(--gold);
+  letter-spacing:0.14em;text-transform:uppercase;
+  margin-bottom:2rem;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,5.5vw,5rem);
+  line-height:1.02;
+  letter-spacing:-0.03em;
+  color:var(--ink);
+  margin-bottom:1.8rem;
+}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{
+  font-size:16px;color:var(--ink2);
+  max-width:460px;line-height:1.75;
+  font-weight:400;margin-bottom:2.5rem;
+}
+.hero-quote{
+  border-left:2px solid var(--gold);
+  padding:0.8rem 1.2rem;
+  background:var(--gold-light);
+  font-family:var(--serif);font-style:italic;
+  font-size:15px;color:var(--accent);
+  margin-bottom:2.5rem;max-width:460px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--accent);color:#fff;
+  padding:13px 30px;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  transition:background .2s;
+}
+.btn-primary:hover{background:#0f2219}
+.btn-outline{
+  background:transparent;color:var(--ink);
+  padding:13px 30px;border:1.5px solid var(--rule);cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  transition:all .2s;
+}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+/* HERO RIGHT — stats panel */
+.hero-right{
+  background:var(--accent);
+  padding:4rem 2.5rem;
+  display:flex;flex-direction:column;justify-content:center;gap:1.8rem;
+}
+.stat-block{border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:1.5rem}
+.stat-block:last-child{border-bottom:none;padding-bottom:0}
+.stat-num{
+  font-family:var(--serif);font-size:2.8rem;color:#fff;
+  line-height:1;margin-bottom:0.2rem;
+}
+.stat-label{font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase}
+.stat-bar{height:3px;background:rgba(255,255,255,0.1);margin-top:10px}
+.stat-bar-fill{height:100%;background:var(--gold)}
+
+/* SECTION SHARED */
+section{padding:5.5rem 2.5rem}
+.section-inner{max-width:1060px;margin:0 auto}
+.section-label{
+  font-family:var(--mono);font-size:10.5px;color:var(--gold);
+  letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.4rem;
+}
+h2{
+  font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.9rem);
+  color:var(--ink);letter-spacing:-0.025em;line-height:1.08;
+  margin-bottom:3rem;
+}
+
+/* ABOUT / VALUE PROP */
+.about-section{background:var(--card);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{font-size:15.5px;color:var(--ink2);line-height:1.78;margin-bottom:1rem}
+.about-text p:last-child{margin-bottom:0}
+.about-pillars{display:flex;flex-direction:column;gap:1rem}
+.pillar{padding:1.2rem 1.5rem;border:1px solid var(--rule);background:var(--bg)}
+.pillar-icon{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.4rem}
+.pillar-title{font-weight:600;font-size:14px;margin-bottom:0.3rem}
+.pillar-desc{font-size:13px;color:var(--ink3);line-height:1.6}
+
+/* SKILLS */
+.skills-section{background:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rule)}
+.skill-card{background:var(--card);padding:2rem 1.8rem}
+.skill-cat{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.6rem}
+.skill-name{font-weight:600;font-size:15px;margin-bottom:1rem;color:var(--ink)}
+.skill-list{display:flex;flex-direction:column;gap:8px}
+.skill-item{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.skill-item-name{font-size:12.5px;color:var(--ink2)}
+.skill-track{flex:1;height:3px;background:var(--rule)}
+.skill-fill{height:100%;background:var(--accent)}
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-family:var(--mono);font-size:10.5px;padding:4px 10px;background:var(--bg);border:1px solid var(--rule);color:var(--ink2)}
+
+/* PROJECTS */
+.projects-section{background:var(--card);border-top:1px solid var(--rule)}
+.projects-intro{font-size:14px;color:var(--ink3);max-width:560px;margin-bottom:3rem;line-height:1.7;border-left:2px solid var(--rule);padding-left:1rem}
+.project-list{display:flex;flex-direction:column;gap:0}
+.project-item{
+  display:grid;grid-template-columns:64px 1fr auto;
+  align-items:start;gap:2rem;
+  padding:2.2rem 0;border-bottom:1px solid var(--rule);
+}
+.project-item:last-child{border-bottom:none}
+.project-num{font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:0.06em;padding-top:4px}
+.project-body{}
+.project-type{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
+.project-title{font-family:var(--serif);font-size:1.35rem;color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.6rem;line-height:1.2}
+.project-desc{font-size:13.5px;color:var(--ink2);line-height:1.68;margin-bottom:1rem;max-width:560px}
+.project-outcome{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;color:var(--accent);
+  background:rgba(28,61,46,0.06);padding:5px 12px;
+}
+.project-outcome::before{content:'↗';font-size:10px}
+.project-stack{display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-top:4px}
+
+/* EXPERIENCE */
+.experience-section{background:var(--bg);border-top:1px solid var(--rule)}
+.exp-list{display:flex;flex-direction:column}
+.exp-item{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:2.5rem;padding:2.5rem 0;
+  border-bottom:1px solid var(--rule);
+}
+.exp-item:last-child{border-bottom:none}
+.exp-meta{}
+.exp-date{font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:0.06em;margin-bottom:0.4rem}
+.exp-co{font-size:13px;font-weight:600;color:var(--accent)}
+.exp-content{}
+.exp-role{font-family:var(--serif);font-size:1.3rem;color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.8rem}
+.exp-desc{font-size:13.5px;color:var(--ink2);line-height:1.7;margin-bottom:1rem}
+.exp-highlights{display:flex;flex-direction:column;gap:6px}
+.exp-highlight{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:var(--ink2);line-height:1.5;
+}
+.exp-highlight::before{
+  content:'—';color:var(--gold);font-family:var(--mono);
+  font-size:10px;flex-shrink:0;margin-top:3px;
+}
+
+/* EDUCATION */
+.edu-section{background:var(--card);border-top:1px solid var(--rule)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.edu-item{padding:1.5rem;border:1px solid var(--rule)}
+.edu-year{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
+.edu-degree{font-weight:600;font-size:15px;margin-bottom:0.2rem}
+.edu-school{font-size:13px;color:var(--ink3)}
+.certs-list{display:flex;flex-direction:column;gap:10px}
+.cert-item{display:flex;align-items:center;gap:12px;padding:0.7rem 1rem;border-left:2px solid var(--gold);background:var(--bg)}
+.cert-bullet{width:6px;height:6px;background:var(--gold);flex-shrink:0;display:none}
+.cert-text{font-size:13px;color:var(--ink2)}
+.cert-source{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:0.06em}
+
+/* CONTACT */
+.contact-section{background:var(--accent);border-top:1px solid var(--rule)}
+.contact-section .section-label{color:rgba(255,255,255,0.45)}
+.contact-section h2{color:#fff;margin-bottom:1rem}
+.contact-tagline{font-size:15px;color:rgba(255,255,255,0.6);max-width:480px;line-height:1.7;margin-bottom:3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-items{display:flex;flex-direction:column;gap:12px}
+.contact-item{
+  display:flex;align-items:center;gap:14px;
+  padding:1rem 1.2rem;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);
+  text-decoration:none;transition:background .2s;
+}
+.contact-item:hover{background:rgba(255,255,255,0.09)}
+.contact-icon{font-family:var(--mono);font-size:12px;color:var(--gold);width:20px;text-align:center;flex-shrink:0}
+.contact-val{font-size:14px;color:rgba(255,255,255,0.8)}
+.contact-note{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  padding:2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;
+}
+.contact-note p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75}
+.btn-white{
+  background:#fff;color:var(--accent);
+  padding:12px 28px;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  transition:all .2s;align-self:flex-start;
+}
+.btn-white:hover{background:var(--gold);color:#fff}
+
+/* FOOTER */
+footer{
+  padding:1.4rem 2.5rem;background:#0c1f17;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;
+}
+footer span{font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,0.25);letter-spacing:0.07em}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .about-grid,.edu-grid,.contact-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr}
+  .exp-meta{margin-bottom:-1rem}
+  .project-item{grid-template-columns:1fr}
+  .project-num{display:none}
+  .project-stack{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  nav{padding:1rem 1.2rem}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Andrés F. Ovalle M.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:astor1107@gmail.com" class="nav-cta">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">Data Analyst · Operations & Business Intelligence</div>
+    <h1 class="fade-up-2">Behind every<br>accurate system<br>is someone who<br><em>gets the details right.</em></h1>
+    <p class="hero-sub fade-up-3">Systems Engineer with 3+ years turning complex, high-volume datasets into clean, trusted, decision-ready outputs. Specialized in ETL, data modeling, and BI reporting for international operational teams.</p>
+    <div class="hero-quote fade-up-3">"Precision is not a trait — it is a practice."</div>
+    <div class="hero-actions fade-up-4">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="mailto:astor1107@gmail.com" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years in data & BI roles</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:60%"></div></div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">30–40%</div>
+      <div class="stat-label">Reporting effort reduced via automation</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">Multi-client</div>
+      <div class="stat-label">BI pipelines delivered simultaneously</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">B2</div>
+      <div class="stat-label">English proficiency · International collaboration</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:65%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="section-label">Profile</div>
+    <h2>What I bring to the table</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Data Analyst and Systems Engineer based in Bogotá, Colombia, with a strong track record in Operations BI. My work lives at the intersection of raw, unstructured data and clear, actionable intelligence — turning complexity into outputs that international teams can trust.</p>
+        <p>At Concentrix, I've built and maintained BI pipelines that serve multiple clients simultaneously, designed bonus calculation models for finance teams, and reduced reporting cycles from days to hours. I work with detail-first discipline: every figure validated, every transformation documented, every output reproducible.</p>
+        <p>I'm now looking to expand into global roles where precision and data integrity are non-negotiable — exactly the kind of environment where I perform best.</p>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">01 — Accuracy</div>
+          <div class="pillar-title">Data integrity above all</div>
+          <div class="pillar-desc">Every output goes through validation. I build with traceability in mind so discrepancies are caught before they reach stakeholders.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">02 — Structure</div>
+          <div class="pillar-title">Clean, scalable models</div>
+          <div class="pillar-desc">I design data architectures that handle growth. From raw inputs to standardized KPI frameworks — built to last and easy to audit.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">03 — Reliability</div>
+          <div class="pillar-title">Consistent delivery</div>
+          <div class="pillar-desc">Automated pipelines and documented workflows mean results don't depend on who's in the office. Systems that work without babysitting.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-label">Technical Stack</div>
+    <h2>Tools & capabilities</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">BI & Reporting</div>
+        <div class="skill-name">Business Intelligence</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-item-name">Power BI (DAX, Power Query)</span><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+          <div class="skill-item"><span class="skill-item-name">Excel (Pivot, Power Pivot)</span><div class="skill-track"><div class="skill-fill" style="width:92%"></div></div></div>
+          <div class="skill-item"><span class="skill-item-name">Dashboard Design</span><div class="skill-track"><div class="skill-fill" style="width:85%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Data Engineering</div>
+        <div class="skill-name">ETL & Data Modeling</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-item-name">SQL / MySQL</span><div class="skill-track"><div class="skill-fill" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-item-name">ETL Pipelines</span><div class="skill-track"><div class="skill-fill" style="width:78%"></div></div></div>
+          <div class="skill-item"><span class="skill-item-name">Data Cleaning & Validation</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Automation</div>
+        <div class="skill-name">Microsoft Power Platform</div>
+        <div class="tags-row">
+          <span class="tag">Power Automate</span>
+          <span class="tag">Power Apps</span>
+          <span class="tag">Report Automation</span>
+          <span class="tag">KPI Frameworks</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Development</div>
+        <div class="skill-name">Full-Stack Background</div>
+        <div class="tags-row">
+          <span class="tag">JavaScript</span>
+          <span class="tag">NodeJS</span>
+          <span class="tag">Angular</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Git</span>
+          <span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-label">Projects</div>
+    <h2>Selected work</h2>
+    <p class="projects-intro">These projects were built and deployed in live operational environments at Concentrix. Due to confidentiality, client names and raw data have been anonymized — the methodologies and outcomes are real.</p>
+    <div class="project-list">
+
+      <div class="project-item">
+        <div class="project-num">01</div>
+        <div class="project-body">
+          <div class="project-type">Power BI · Operations Analytics</div>
+          <h3 class="project-title">Operational KPI Dashboard Suite</h3>
+          <p class="project-desc">Designed and deployed a multi-level Power BI dashboard suite to monitor agent, team-leader, and campaign KPIs in real time across multiple business lines. Built a centralized data model integrating daily operational metrics — enabling detailed performance traceability and cross-team analysis without manual data pulls.</p>
+          <div class="project-outcome">Eliminated daily manual reports · Improved decision turnaround by ~40%</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">02</div>
+        <div class="project-body">
+          <div class="project-type">Excel · Financial Modeling</div>
+          <h3 class="project-title">Incentive & Bonus Calculation Engine</h3>
+          <p class="project-desc">Built automated Excel-based bonus calculation models covering multiple compensation structures across several clients. Each model includes layered validation rules, formula auditability, and output summaries ready for payroll sign-off — reducing manual errors and increasing transparency in incentive processes.</p>
+          <div class="project-outcome">Reduced calculation errors to near-zero · Scaled across 4+ client accounts</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Excel</span>
+          <span class="tag">Power Pivot</span>
+          <span class="tag">Advanced Formulas</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">03</div>
+        <div class="project-body">
+          <div class="project-type">ETL · Data Architecture</div>
+          <h3 class="project-title">Centralized Operational Metrics Model</h3>
+          <p class="project-desc">Designed a unified data architecture consolidating daily metrics from disparate operational sources into a single, clean model. The pipeline standardizes field names, validates ranges, and flags anomalies before loading — enabling reliable historical analysis and cross-functional reporting without manual intervention.</p>
+          <div class="project-outcome">Single source of truth for 3 business units · Full historical traceability</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">SQL</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">ETL</span>
+          <span class="tag">Data Modeling</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">04</div>
+        <div class="project-body">
+          <div class="project-type">Automation · Reporting</div>
+          <h3 class="project-title">Automated Reporting Pipeline</h3>
+          <p class="project-desc">Replaced a manual, error-prone weekly reporting cycle with an automated pipeline using Power Automate and Power BI scheduled refresh. Reports are now generated, validated, and distributed to stakeholders on schedule — with zero manual formatting steps and consistent output structure across time periods.</p>
+          <div class="project-outcome">30–40% reduction in reporting effort · 100% on-time delivery</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Power Automate</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="section-inner">
+    <div class="section-label">Career</div>
+    <h2>Professional experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jan 2023 — Present</div>
+          <div class="exp-co">Concentrix S.A.S · Bogotá</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Sr. Specialist – Operations Reporting</div>
+          <div class="exp-desc">Lead BI analyst for multi-client operational reporting. Responsible for the full data lifecycle — from raw source ingestion to executive-level dashboards — across several simultaneous client accounts.</div>
+          <div class="exp-highlights">
+            <div class="exp-highlight">Led the development of interactive Power BI dashboards to monitor KPIs at team, leader, and individual levels.</div>
+            <div class="exp-highlight">Designed and implemented automated reporting pipelines, reducing manual effort by 30–40% and increasing data accuracy.</div>
+            <div class="exp-highlight">Built a centralized data model integrating daily operational metrics, enabling detailed cross-team performance analysis.</div>
+            <div class="exp-highlight">Developed bonus calculation models in Excel & Power BI for multiple clients, improving accuracy and transparency.</div>
+            <div class="exp-highlight">Standardized KPI frameworks and reporting structures across business units for consistency and scalability.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">May 2019 — Dec 2022</div>
+          <div class="exp-co">Concentrix S.A.S · Bogotá</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Associate – Real-Time Management</div>
+          <div class="exp-desc">Monitored live service delivery and staffing performance across multiple business lines. Ensured service level compliance through real-time analysis and prepared daily and weekly reports for management oversight.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jan 2019 — May 2019</div>
+          <div class="exp-co">Bogotá Institute of Technology</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Web Development Specialist</div>
+          <div class="exp-desc">Delivered full-stack web development training. Designed and implemented educational web and desktop applications. Planned, executed, and evaluated programming education processes.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-section" id="education">
+  <div class="section-inner">
+    <div class="section-label">Education</div>
+    <h2>Academic background</h2>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-item">
+          <div class="edu-year">2025 · Degree</div>
+          <div class="edu-degree">B.Sc. Systems Engineering</div>
+          <div class="edu-school">Corporación Unificada Nacional — CUN · Bogotá</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:1rem">Certifications</div>
+        <div class="certs-list">
+          <div class="cert-item">
+            <div>
+              <div class="cert-text">Foundations of Data Analysis</div>
+              <div class="cert-source">Cisco Network Academy · 2025</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div>
+              <div class="cert-text">Data Analysis with Excel & Power BI</div>
+              <div class="cert-source">Platzi · 2023</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div>
+              <div class="cert-text">Practical SQL & MySQL</div>
+              <div class="cert-source">Platzi · 2023</div>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div>
+              <div class="cert-text">Full Stack Web Development</div>
+              <div class="cert-source">Udemy · 2020</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Let's connect</div>
+    <h2>Open to opportunities</h2>
+    <p class="contact-tagline">Available for full-time remote roles, international team collaboration, and data-focused positions where precision and reliability are core expectations.</p>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <a href="mailto:astor1107@gmail.com" class="contact-item">
+          <div class="contact-icon">@</div>
+          <div class="contact-val">astor1107@gmail.com</div>
+        </a>
+        <a href="tel:+573178736787" class="contact-item">
+          <div class="contact-icon">#</div>
+          <div class="contact-val">+57 317 873 6787</div>
+        </a>
+        <a href="https://linkedin.com/in/andres-felipe-ovalle-murcia-35931471" target="_blank" class="contact-item">
+          <div class="contact-icon">in</div>
+          <div class="contact-val">LinkedIn · Andrés Ovalle</div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">⌖</div>
+          <div class="contact-val">Bogotá, Colombia · Remote-ready</div>
+        </div>
+      </div>
+      <div class="contact-note">
+        <p>I'm particularly interested in roles where I can support international operations through structured data — document conversion, data validation, pipeline maintenance, or BI reporting for global teams. Let's talk.</p>
+        <a href="mailto:astor1107@gmail.com" class="btn-white">Send a message →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Andrés Felipe Ovalle Murcia · Data Analyst · Bogotá, Colombia</span>
+  <span>Built with HTML · Hosted on GitHub Pages</span>
+</footer>
+
+</body>
+</html>
