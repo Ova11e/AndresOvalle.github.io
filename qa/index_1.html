@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrés Ovalle · QA Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#111210;--ink2:#3d3f3a;--ink3:#7a7c76;
+  --bg:#f4f2ed;--card:#ffffff;--rule:#dddbd4;
+  --accent:#1c3d2e;--gold:#b5873a;--gold-light:#f0e4cc;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .7s ease both}
+.fade-up-2{animation:fadeUp .7s .15s ease both}
+.fade-up-3{animation:fadeUp .7s .28s ease both}
+.fade-up-4{animation:fadeUp .7s .42s ease both}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(244,242,237,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--ink3);font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff;padding:8px 20px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:#0f2219}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 420px;padding-top:68px;overflow:hidden}
+.hero-left{padding:5rem 3.5rem 4rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--rule)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:2rem}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+h1{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5rem);line-height:1.02;letter-spacing:-0.03em;color:var(--ink);margin-bottom:1.8rem}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{font-size:16px;color:var(--ink2);max-width:460px;line-height:1.75;margin-bottom:2.5rem}
+.hero-quote{border-left:2px solid var(--gold);padding:0.8rem 1.2rem;background:var(--gold-light);font-family:var(--serif);font-style:italic;font-size:15px;color:var(--accent);margin-bottom:2.5rem;max-width:460px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:13px 30px;border:none;cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:background .2s}
+.btn-primary:hover{background:#0f2219}
+.btn-outline{background:transparent;color:var(--ink);padding:13px 30px;border:1.5px solid var(--rule);cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+.hero-right{background:var(--accent);padding:4rem 2.5rem;display:flex;flex-direction:column;justify-content:center;gap:1.8rem}
+.stat-block{border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:1.5rem}
+.stat-block:last-child{border-bottom:none;padding-bottom:0}
+.stat-num{font-family:var(--serif);font-size:2.8rem;color:#fff;line-height:1;margin-bottom:0.2rem}
+.stat-label{font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase}
+.stat-bar{height:3px;background:rgba(255,255,255,0.1);margin-top:10px}
+.stat-bar-fill{height:100%;background:var(--gold)}
+
+section{padding:5.5rem 2.5rem}
+.section-inner{max-width:1060px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:10.5px;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.4rem}
+h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.9rem);color:var(--ink);letter-spacing:-0.025em;line-height:1.08;margin-bottom:3rem}
+
+.about-section{background:var(--card);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{font-size:15.5px;color:var(--ink2);line-height:1.78;margin-bottom:1rem}
+.about-text p:last-child{margin-bottom:0}
+.about-pillars{display:flex;flex-direction:column;gap:1rem}
+.pillar{padding:1.2rem 1.5rem;border:1px solid var(--rule);background:var(--bg)}
+.pillar-icon{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.4rem}
+.pillar-title{font-weight:600;font-size:14px;margin-bottom:0.3rem}
+.pillar-desc{font-size:13px;color:var(--ink3);line-height:1.6}
+
+.skills-section{background:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rule)}
+.skill-card{background:var(--card);padding:2rem 1.8rem}
+.skill-cat{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.6rem}
+.skill-name{font-weight:600;font-size:15px;margin-bottom:1rem;color:var(--ink)}
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-family:var(--mono);font-size:10.5px;padding:4px 10px;background:var(--bg);border:1px solid var(--rule);color:var(--ink2)}
+
+.projects-section{background:var(--card);border-top:1px solid var(--rule)}
+.projects-intro{font-size:14px;color:var(--ink3);max-width:560px;margin-bottom:3rem;line-height:1.7;border-left:2px solid var(--rule);padding-left:1rem}
+.project-list{display:flex;flex-direction:column;gap:0}
+.project-item{display:grid;grid-template-columns:64px 1fr auto;align-items:start;gap:2rem;padding:2.2rem 0;border-bottom:1px solid var(--rule)}
+.project-item:last-child{border-bottom:none}
+.project-num{font-family:var(--mono);font-size:11px;color:var(--ink3);padding-top:4px}
+.project-type{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem}
+.project-title{font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:0.6rem;line-height:1.2}
+.project-desc{font-size:13.5px;color:var(--ink2);line-height:1.68;margin-bottom:1rem;max-width:560px}
+.project-outcome{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--accent);background:rgba(28,61,46,0.06);padding:5px 12px}
+.project-outcome::before{content:'✓';font-size:10px}
+.project-stack{display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-top:4px}
+
+.process-section{background:var(--bg);border-top:1px solid var(--rule)}
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--rule)}
+.process-step{background:var(--card);padding:1.8rem 1.5rem}
+.process-num{font-family:var(--serif);font-size:2rem;color:var(--gold);line-height:1;margin-bottom:0.6rem}
+.process-title{font-weight:600;font-size:14px;margin-bottom:0.4rem}
+.process-desc{font-size:12.5px;color:var(--ink3);line-height:1.55}
+
+.contact-section{background:var(--accent);border-top:1px solid var(--rule)}
+.contact-section .section-label{color:rgba(255,255,255,0.45)}
+.contact-section h2{color:#fff;margin-bottom:1rem}
+.contact-tagline{font-size:15px;color:rgba(255,255,255,0.6);max-width:480px;line-height:1.7;margin-bottom:3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact-items{display:flex;flex-direction:column;gap:12px}
+.contact-item{display:flex;align-items:center;gap:14px;padding:1rem 1.2rem;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);text-decoration:none;transition:background .2s}
+.contact-item:hover{background:rgba(255,255,255,0.09)}
+.contact-icon{font-family:var(--mono);font-size:12px;color:var(--gold);width:20px;text-align:center}
+.contact-val{font-size:14px;color:rgba(255,255,255,0.8)}
+.contact-note{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:2rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem}
+.contact-note p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.75}
+.btn-white{background:#fff;color:var(--accent);padding:12px 28px;border:none;cursor:pointer;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .2s;align-self:flex-start}
+.btn-white:hover{background:var(--gold);color:#fff}
+
+footer{padding:1.4rem 2.5rem;background:#0c1f17;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+footer span{font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,0.25);letter-spacing:0.07em}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr}.hero-right{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .project-item{grid-template-columns:1fr}.project-num{display:none}
+  .project-stack{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+  nav{padding:1rem 1.2rem}.nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Andrés F. Ovalle M.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:astor1107@gmail.com" class="nav-cta">Hire me</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow fade-up">QA Analyst · Quality Assurance & Testing</div>
+    <h1 class="fade-up-2">Finding what<br>others miss —<br><em>before users do.</em></h1>
+    <p class="hero-sub fade-up-3">Systems Engineer with 3+ years ensuring data integrity and software quality. I catch inconsistencies, document issues with precision, and work closely with technical teams to ship reliable, polished products.</p>
+    <div class="hero-quote fade-up-3">"Quality is never an accident — it's the result of attention to detail."</div>
+    <div class="hero-actions fade-up-4">
+      <a href="#projects" class="btn-primary">View Experience</a>
+      <a href="mailto:astor1107@gmail.com" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years ensuring data & quality</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:60%"></div></div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">JIRA</div>
+      <div class="stat-label">Issue tracking & bug documentation</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">Full-Stack</div>
+      <div class="stat-label">Development background</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:70%"></div></div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">B2</div>
+      <div class="stat-label">English · International teams</div>
+      <div class="stat-bar"><div class="stat-bar-fill" style="width:65%"></div></div>
+    </div>
+  </div>
+</div>
+
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="section-label">Profile</div>
+    <h2>Why quality is my craft</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Systems Engineer and Data Analyst based in Bogotá, Colombia. My career has been built on a single principle: accuracy matters. Whether validating high-volume datasets or testing web applications, my job has always been to find what's wrong before it reaches the end user.</p>
+        <p>At Concentrix, I spent years ensuring the integrity of operational data — spotting inconsistencies, documenting issues, and collaborating with technical teams to fix root causes. Earlier, as a web development specialist, I used JIRA daily to track bugs and tested applications before delivery.</p>
+        <p>I bring a rare combination to QA: the analytical discipline of a data professional, the technical understanding of a developer, and a genuinely methodical mindset that thrives on detail-heavy, repetitive work others find tedious.</p>
+      </div>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">01 — Detail</div>
+          <div class="pillar-title">Nothing slips through</div>
+          <div class="pillar-desc">Trained by years of data validation to notice the small inconsistencies that become big problems downstream.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">02 — Documentation</div>
+          <div class="pillar-title">Clear, reproducible reports</div>
+          <div class="pillar-desc">I document issues so anyone can understand and reproduce them — using JIRA and structured reporting.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">03 — Technical depth</div>
+          <div class="pillar-title">I understand how it breaks</div>
+          <div class="pillar-desc">A full-stack and SQL background means I know how software behaves under the hood, not just on the surface.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-label">Toolkit</div>
+    <h2>Skills & tools</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">QA & Testing</div>
+        <div class="skill-name">Quality Assurance</div>
+        <div class="tags-row">
+          <span class="tag">Manual Testing</span><span class="tag">Bug Documentation</span><span class="tag">Test Cases</span><span class="tag">Regression Testing</span><span class="tag">Reproducing Issues</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Tools</div>
+        <div class="skill-name">Issue Tracking</div>
+        <div class="tags-row">
+          <span class="tag">JIRA</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Technical</div>
+        <div class="skill-name">Development & Data</div>
+        <div class="tags-row">
+          <span class="tag">SQL / MySQL</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">NodeJS</span><span class="tag">Angular</span><span class="tag">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Strengths</div>
+        <div class="skill-name">What sets me apart</div>
+        <div class="tags-row">
+          <span class="tag">Attention to Detail</span><span class="tag">Analytical Thinking</span><span class="tag">Clear Communication</span><span class="tag">Methodical</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-label">Experience</div>
+    <h2>Relevant experience</h2>
+    <p class="projects-intro">My background maps naturally onto QA: finding errors, documenting them clearly, and collaborating with technical teams to resolve them. Here's how each role built those skills.</p>
+    <div class="project-list">
+
+      <div class="project-item">
+        <div class="project-num">01</div>
+        <div class="project-body">
+          <div class="project-type">Data Quality · Concentrix</div>
+          <h3 class="project-title">Ensuring Data Integrity at Scale</h3>
+          <p class="project-desc">As Sr. Specialist, I validated high-volume operational datasets, identifying and correcting inconsistencies before reports reached stakeholders. I applied rigorous validation checks to reporting pipelines and documented issues, tracing root causes with cross-functional teams.</p>
+          <div class="project-outcome">Reduced reporting errors · Improved output reliability</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">SQL</span><span class="tag">Validation</span><span class="tag">Documentation</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">02</div>
+        <div class="project-body">
+          <div class="project-type">Real-Time Monitoring · Concentrix</div>
+          <h3 class="project-title">Detecting Anomalies in Real Time</h3>
+          <p class="project-desc">In real-time management, I monitored live operations and quickly detected and flagged anomalies — the same instinct QA requires. I maintained accuracy in high-volume, time-sensitive conditions, preparing detailed reports under pressure.</p>
+          <div class="project-outcome">Fast anomaly detection · Accuracy under pressure</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Monitoring</span><span class="tag">Reporting</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">03</div>
+        <div class="project-body">
+          <div class="project-type">Testing & JIRA · BIT</div>
+          <h3 class="project-title">Testing & Bug Tracking with JIRA</h3>
+          <p class="project-desc">As a Web Development Specialist, I used JIRA daily to track issues, manage tasks, and document bugs during development. I tested and debugged web and desktop applications, ensuring full functionality before delivery — hands-on QA in practice.</p>
+          <div class="project-outcome">Hands-on testing · Daily JIRA workflow</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">JIRA</span><span class="tag">Testing</span><span class="tag">Debugging</span>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-num">04</div>
+        <div class="project-body">
+          <div class="project-type">Issue Diagnosis · Contento BPS</div>
+          <h3 class="project-title">Diagnosing & Reproducing Issues</h3>
+          <p class="project-desc">Providing technical support for the Rappi platform, I diagnosed and reproduced application and system issues, then documented them clearly so technical teams could resolve them efficiently — the core loop of quality assurance.</p>
+          <div class="project-outcome">Clear issue reproduction · Efficient handoffs</div>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Troubleshooting</span><span class="tag">Documentation</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="section-inner">
+    <div class="section-label">Approach</div>
+    <h2>How I test</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-title">Understand</div>
+        <div class="process-desc">Learn how the product should behave and where users interact with it.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-title">Explore</div>
+        <div class="process-desc">Test methodically and probe edge cases where things tend to break.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-title">Document</div>
+        <div class="process-desc">Log every issue clearly in JIRA with steps to reproduce.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <div class="process-title">Collaborate</div>
+        <div class="process-desc">Work with developers to confirm fixes and prevent regressions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Let's connect</div>
+    <h2>Ready to ensure quality</h2>
+    <p class="contact-tagline">Open to QA and testing roles — remote or hybrid — where attention to detail and reliability are what matter most.</p>
+    <div class="contact-grid">
+      <div class="contact-items">
+        <a href="mailto:astor1107@gmail.com" class="contact-item">
+          <div class="contact-icon">@</div>
+          <div class="contact-val">astor1107@gmail.com</div>
+        </a>
+        <a href="tel:+573178736787" class="contact-item">
+          <div class="contact-icon">#</div>
+          <div class="contact-val">+57 317 873 6787</div>
+        </a>
+        <a href="https://linkedin.com/in/andres-felipe-ovalle-murcia-35931471" target="_blank" class="contact-item">
+          <div class="contact-icon">in</div>
+          <div class="contact-val">LinkedIn · Andrés Ovalle</div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">⌖</div>
+          <div class="contact-val">Bogotá, Colombia · Remote-ready</div>
+        </div>
+      </div>
+      <div class="contact-note">
+        <p>I combine a developer's technical understanding, a data analyst's discipline, and a natural eye for detail. If you need someone who genuinely enjoys finding and documenting what's broken, let's talk.</p>
+        <a href="mailto:astor1107@gmail.com" class="btn-white">Send a message →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Andrés Felipe Ovalle Murcia · QA Analyst · Bogotá, Colombia</span>
+  <span>Built with HTML · Hosted on GitHub Pages</span>
+</footer>
+
+</body>
+</html>
